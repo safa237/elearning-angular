@@ -1,124 +1,149 @@
 <div class="exercise container-fluid mt-4">
-    <div class="d-flex flex-row-reverse flex-wrap ">
-        <div class=" list col-12 col-sm-4 flex-shrink-0" >
-            <div class="typeq">اسحب نوع السؤال</div>
-            <div><button>اختيار من متعدد</button></div>
-            <div><button>اختيار فردي</button></div>
-        </div>
-        <div class="divtest col-12 col-sm-8 flex-grow-1 d-flex flex-column" >
-            <div class="drag">
-                <p>.. قم بسحب وادراج نوع السؤال هنا</p>
-            </div>
-
-            <div class="test">
-                <p class="subtitle">اختيار فردي</p>
-                <div class="question">
-                    <p>...نص السؤال</p>
-                </div>
-                <div class="container mt-3">
-                    <div class="d-flex justify-content-end align-items-center">
-                        <div class="easyoptions" >
-                        <div class="custom-radio">
-                            <label for="hard">صعب</label>
-                            <input type="radio" name="difficulty" id="hard" value="hard">
-                        </div>
-                        <div class="custom-radio">
-                            <label for="medium">متوسط</label>
-                            <input type="radio" name="difficulty" id="medium" value="medium">
-                        </div>
-                        <div class="custom-radio">
-                            <label for="easy">سهل</label>
-                            <input type="radio" name="difficulty" id="easy" value="easy" checked>
-                        </div>
-                    </div>
-                        <button class="new-option-button">+ خيار جديد</button>
-                    </div>
-
-                    <div class=" mt-4">
-                        <div class="row">
-                          <div class="col-12 col-md-6 custom-radio d-flex ">
-                            <label for="hard">تحديد كأجابه صحيحه</label>
-                            <input type="radio" name="difficulty" id="hard" value="hard">
-                          </div>
-                          <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" placeholder="الاختيار الاول">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class=" mt-4">
-                        <div class="row">
-                          <div class="col-12 col-md-6 custom-radio d-flex ">
-                            <label for="hard">تحديد كأجابه صحيحه</label>
-                            <input type="radio" name="difficulty" id="hard" value="hard">
-                          </div>
-                          <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" placeholder="الاختيار الاول">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="d-flex justify-content-end align-items-center mt-4">
-                        <div class="cancel"><button>الغاء</button></div>
-                        <div class="save"><button> حفظ كمسوده</button></div>
-                      </div>
-                </div>
-            </div>
-
-            <div class="test">
-                <p class="subtitle">اختيار من متعدد</p>
-                <div class="question">
-                    <p>...نص السؤال</p>
-                </div>
-                <div class="container mt-3">
-                    <div class="d-flex justify-content-end align-items-center">
-                        <div class="easyoptions" >
-                        <div class="custom-radio">
-                            <label for="hard">صعب</label>
-                            <input type="radio" name="difficulty" id="hard" value="hard">
-                        </div>
-                        <div class="custom-radio">
-                            <label for="medium">متوسط</label>
-                            <input type="radio" name="difficulty" id="medium" value="medium">
-                        </div>
-                        <div class="custom-radio">
-                            <label for="easy">سهل</label>
-                            <input type="radio" name="difficulty" id="easy" value="easy" checked>
-                        </div>
-                    </div>
-                        <button class="new-option-button">+ خيار جديد</button>
-                    </div>
-
-                    <div class=" mt-4">
-                        <div class="row">
-                          <div class="col-12 col-md-6 custom-radio d-flex ">
-                            <label for="hard">تحديد كأجابه صحيحه</label>
-                            <input type="radio" name="difficulty" id="hard" value="hard">
-                          </div>
-                          <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" placeholder="الاختيار الاول">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class=" mt-4">
-                        <div class="row">
-                          <div class="col-12 col-md-6 custom-radio d-flex ">
-                            <label for="hard">تحديد كأجابه صحيحه</label>
-                            <input type="radio" name="difficulty" id="hard" value="hard">
-                          </div>
-                          <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" placeholder="الاختيار الاول">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="d-flex justify-content-end align-items-center mt-4">
-                        <div class="cancel"><button>الغاء</button></div>
-                        <div class="save"><button> حفظ كمسوده</button></div>
-                      </div>
-                </div>
-            </div>
-        </div>
+  <div class="d-flex flex-row-reverse flex-wrap">
+    <div class="list col-12 col-sm-4 flex-shrink-0">
+      <div class="typeq">اسحب نوع السؤال</div>
+      <div cdkDrag (cdkDragReleased)="onDragReleased($event, 'multiChoice')">
+        <button style="background-color: white; padding: 5px;">اختيار من متعدد</button>
+      </div>
+      <div cdkDrag (cdkDragReleased)="onDragReleased($event, 'singleChoice')">
+        <button style="background-color: white; padding: 5px;">اختيار فردي</button>
+      </div>
     </div>
+    <div class="divtest col-12 col-sm-8 flex-grow-1 d-flex flex-column">
+      <div class="drag">
+        <input placeholder=".. قم بسحب وادراج نوع السؤال هنا" class="form-control" readonly />
+      </div>
+
+      <div *ngIf="showIndividual" class="individual test text-end">
+        <p class="subtitle">اختيار فردي</p>
+    
+        <div class="question">
+          <input type="text" class="form-control no-border" placeholder="نص السؤال" dir="rtl" [(ngModel)]="questionText">
+        </div>
+        
+        <div class="container mt-3">
+          <div class="d-flex justify-content-end align-items-center">
+            <div class="easyoptions">
+              <div class="custom-radio">
+                <label for="hard">صعب</label>
+                <input type="radio" name="difficulty" id="hard" value="hard">
+              </div>
+              <div class="custom-radio">
+                <label for="medium">متوسط</label>
+                <input type="radio" name="difficulty" id="medium" value="medium">
+              </div>
+              <div class="custom-radio">
+                <label for="easy">سهل</label>
+                <input type="radio" name="difficulty" id="easy" value="easy" checked>
+              </div>
+            </div>
+            <button class="new-option-button" (click)="showAddChoiceForm('single')">+ خيار جديد</button>
+          </div>
+          
+          <div *ngIf="isAddingChoice && currentQuestionType === 'single'" class="new-choice-container mt-4 text-end">
+            <div class="row">
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <button (click)="cancelAddChoice()" class="btn cancel ms-2">الغاء</button>
+                <button (click)="saveChoice()" class="btn" style="background-color: rgba(255, 59, 166, 1);">حفظ الخيار</button>
+                
+              </div>
+              <div class="col-12 col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="newChoiceText" placeholder="الاختيار الجديد" dir="rtl">
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Existing choices -->
+          <div class="mt-4" *ngFor="let choice of singleChoiceOptions; let i = index">
+            <div class="row">
+              <div class="col-12 col-md-6 custom-radio d-flex text-end">
+                <label for="choice{{i}}">تحديد كأجابه صحيحه</label>
+                <input type="radio" name="correctAnswer" id="choice{{i}}" value="{{i}}">
+              </div>
+              <div class="col-12 col-md-6">
+                <div *ngIf="!choice.isEditable">{{ choice.text }}</div>
+                <input *ngIf="choice.isEditable" type="text" class="form-control" [(ngModel)]="choice.text" placeholder="الاختيار {{i + 1}}" dir="rtl">
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end align-items-center mt-4">
+            <div class="cancel"><button (click)="cancelQuestion()">الغاء</button></div>
+            <div class="save"><button (click)="saveQuestion()">حفظ كمسوده</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="showSeveral" class="several test text-end">
+        <p class="subtitle">اختيار من متعدد</p>
+        <div class="question">
+          <input type="text" class="form-control no-border" placeholder="نص السؤال" dir="rtl" [(ngModel)]="questionText">
+        </div>
+      
+        <div class="container mt-3">
+          <div class="d-flex justify-content-end align-items-center">
+            <div class="easyoptions">
+              <div class="custom-radio">
+                <label for="hard">صعب</label>
+                <input type="radio" name="difficulty" id="hard" value="hard">
+              </div>
+              <div class="custom-radio">
+                <label for="medium">متوسط</label>
+                <input type="radio" name="difficulty" id="medium" value="medium">
+              </div>
+              <div class="custom-radio">
+                <label for="easy">سهل</label>
+                <input type="radio" name="difficulty" id="easy" value="easy" checked>
+              </div>
+            </div>
+            <button class="new-option-button" (click)="showAddChoiceForm('multiple')">+ خيار جديد</button>
+          </div>
+          
+          <div *ngIf="isAddingChoice && currentQuestionType === 'multiple'" class="new-choice-container mt-4 text-end">
+            <div class="row">
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <button (click)="cancelAddChoice()" class="btn cancel ms-2">الغاء</button>
+                <button (click)="saveChoice()" class="btn savecho" style="background-color: rgba(255, 59, 166, 1);">حفظ الخيار</button>
+                
+              </div>
+              <div class="col-12 col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="newChoiceText" placeholder="الاختيار الجديد" dir="rtl">
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Existing choices -->
+          <div class="mt-4" *ngFor="let choice of multipleChoiceOptions; let i = index">
+            <div class="row">
+              <div class="col-12 col-md-6 custom-radio d-flex text-end">
+                <label for="choice{{i}}">تحديد كأجابه صحيحه</label>
+                <input type="radio" name="correctAnswer" id="choice{{i}}" value="{{i}}">
+              </div>
+              <div class="col-12 col-md-6">
+                <div *ngIf="!choice.isEditable">{{ choice.text }}</div>
+                <input *ngIf="choice.isEditable" type="text" class="form-control" [(ngModel)]="choice.text" placeholder="الاختيار {{i + 1}}" dir="rtl">
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end align-items-center mt-4">
+            <div class="cancel"><button (click)="cancelQuestion()">الغاء</button></div>
+            <div class="save"><button (click)="saveQuestion()">حفظ كمسوده</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success message -->
+  <div *ngIf="showSuccessMessage" class="alert alert-success mt-4">
+    <strong>نجاح!</strong> تم حفظ السؤال كمسودة.
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="showErrorMessage" class="alert alert-danger mt-4">
+    <strong>خطأ!</strong> يجب عليك كتابة السؤال أولاً.
+  </div>
 </div>
